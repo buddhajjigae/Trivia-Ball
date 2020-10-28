@@ -125,14 +125,12 @@ for file in os.listdir(directory):
     file_list.append(file + ".csv")
 '''
 
-
 for path_a, subdirs, files in os.walk(r'C:\NBA Scraper\players'):
     for name in files:
         file_path = str(pathlib.PurePath(path_a, name))        
         file_list.append(file_path)
         
 print(len(file_list))
-
 
 with open(r'C:\NBA Scraper\Fixed_Completed.txt', 'r') as comp_file:
     comp_files_raw = comp_file.readlines()
@@ -143,30 +141,23 @@ for file in comp_files_raw:
 
 print(comp_files)    
 
-
 '''Counters'''
 clean_count = 0
-no_count = 0
+no_count = 0    
 
-    
 for file in file_list:    
     raw_list = []
-    fixed_list = []
+    fixed_list = []   
     
-    for e in file:
-        
-    
-    
+    for e in file:      
     if file not in comp_files and file[-8:] != 'Test.csv':
         clean_count += 1
         playoffs = file[-14:-4]
         with open(file, 'r') as csv_file:
-                csv_reader = csv.reader(csv_file, delimiter=',')
-        
+                csv_reader = csv.reader(csv_file, delimiter=',')                      
                 for row in csv_reader:
                     if len(row) != 0:
-                        raw_list.append(row)
-                                    
+                        raw_list.append(row)                                    
                 for i in raw_list:
                     for j,e in enumerate(i):
                         if i[j] == '' and j != 5:
@@ -180,11 +171,8 @@ for file in file_list:
                         elif e == 'Inactive':
                             i.extend(['NULL'] * 21)
                         elif e == 'Not With Team':
-                            i.extend(['NULL'] * 21)
-                                                   
-                        name_types_list.append(i[8])
-                    
-                    
+                            i.extend(['NULL'] * 21)                                                 
+                        name_types_list.append(i[8])                                       
                     if playoffs == 'playoffs':
                         i.extend('Yes')
                     else:
@@ -196,53 +184,10 @@ for file in file_list:
                     fixed_list.append(i)
                     #print('FILE DONE: ' + file) 
     else:
-        no_count += 1    
-        
+        no_count += 1           
         sql = "INSERT INTO `users` (`email`, `password`) VALUES (%s, %s)"
-        cursor.execute(sql, ('webmaster@python.org', 'very-secret'))
-           
-        
-        
-# for file in file_list:    
-#     raw_list = []
-#     fixed_list = []
-    
-#     if file not in comp_files and file[-8:] != 'Test.csv':
-#         clean_count += 1
-#         with open(file, 'r') as csv_file:
-#                 csv_reader = csv.reader(csv_file, delimiter=',')
-        
-#                 for row in csv_reader:
-#                     if len(row) != 0:
-#                         raw_list.append(row)
-                                    
-#                 for i in raw_list:
-#                     for j,e in enumerate(i):
-#                         if i[j] == '' and j != 5:
-#                             i[j]= 'NULL'                              
-#                         elif e == 'Did Not Play':
-#                             i.extend(['NULL'] * 21)
-#                         elif e == 'Did Not Dress':
-#                             i.extend(['NULL'] * 21)
-#                         elif e == 'Player Suspended':
-#                             i.extend(['NULL'] * 21)
-#                         elif e == 'Inactive':
-#                             i.extend(['NULL'] * 21)
-#                         elif e == 'Not With Team':
-#                             i.extend(['NULL'] * 21)
-                                                   
-#                         name_types_list.append(i[8])    
-#                     print(i)
-#                     fixed_list.append(i)
-#                 #print('FILE DONE: ' + file)
-#                 test = file.replace('.csv','_Test.csv')   
-#                 write_csv(test, fixed_list) 
-#         write_completed(file)  
-#     else:
-#         no_count += 1    
-         
- 
-           
+        cursor.execute(sql, ('webmaster@python.org', 'very-secret'))           
+                          
 # name_types_set = set(name_types_list)
 # name_types_list = list(name_types_set)
 # print(name_types_list)      
