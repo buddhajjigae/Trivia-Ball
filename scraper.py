@@ -23,7 +23,6 @@ def file_name(URL, playername):
         
     return filename
 
-
 '''Finds the URL of each Game Log for the Player'''
 def get_game_logs(url):
     game_url = 'https://www.basketball-reference.com' + url
@@ -42,7 +41,6 @@ def get_game_logs(url):
     
     return result
 
-
 '''Gets the headers of the data table'''
 def get_headers(table):
     thead = table.find('thead')
@@ -54,7 +52,6 @@ def get_headers(table):
     
     return fields
 
-
 '''Gets the players that are currently playing'''
 def get_players(url):
     player_url = url
@@ -64,7 +61,6 @@ def get_players(url):
     names = player_names(table)
     
     return names
-
 
 '''Gets the player name for the file'''
 def get_player_name(name):
@@ -87,7 +83,6 @@ def get_player_name(name):
 
     return player_name
 
-
 '''Generates a list of all the data values'''
 def make_table_list(table):
     result = []
@@ -104,7 +99,6 @@ def make_table_list(table):
     
     return result
 
-
 '''Gets the URL's for each active player'''
 def player_names(table):
     result = []
@@ -119,19 +113,16 @@ def player_names(table):
 
     return result    
 
-
 '''Writes to completed file to ignore'''
 def write_completed(url):
     with open(r'C:\NBA Scraper\Completed.txt', 'a') as txtfile:
         txtfile.write(url + "\n")
-
 
 '''Writes the headers into the CSV file'''
 def write_headers(headers, filename):
     with open(filename, 'w') as csvfile:  
         writer = csv.writer(csvfile, delimiter = ',')
         writer.writerow(headers)  
-
     
 '''Writes the data rows into the CSV file'''    
 def write_rows(filename, data):
@@ -140,21 +131,8 @@ def write_rows(filename, data):
         i = 0
         for e in data:
             writer.writerow(data[0+i]) 
-            i += 1
-    
-
-# '''Writes the URL's that will be scraped into a txt file'''
-# def write_urls_text(names):
-#     textfile = open("Game_Logs.txt", "a")
-    
-#     for i in names:
-#         logs = get_game_logs(i)
-#         for j in logs: 
-#             textfile.write(j + "\n")
-            
-#     print("Finished File:   Game_Logs.txt")      
-
-
+            i += 1  
+       
 '''Writes the URL's that will be scraped into a txt file'''
 def write_urls_text(names, alphabet):
     with open(r"C:\NBA Scraper\Game_Logs.txt", "a") as textfile:
@@ -224,17 +202,14 @@ names = get_players('https://www.basketball-reference.com/players/' + 'a')
 write_urls_text(names, 'a')
 
 
-# '''Generate Game Logs'''
+# '''Generate Game Logs''' Uncomment to iterate through entire player database
 # for i in ascii_lowercase:
 #     names = get_players('https://www.basketball-reference.com/players/' + i)
 #     write_urls_text(names, i)
 
  
 '''Read Game_Logs.txt and delete after reading'''
-#logs_file = open(r'C:\NBA Scraper\Game_Logs.txt','r')
-#logs = logs_file .readlines()
 logs = open(r'C:\NBA Scraper\Game_Logs.txt','r').read().split('\n')
-#logs_file .close()
 print(len(logs))
 os.remove(r'C:\NBA Scraper\Game_Logs.txt')
 print("***Game_Logs.txt DELETED***")
@@ -288,32 +263,3 @@ for log in logs:
 print("***SCRAPER HAS FINISHED***")
 print("Completed: " + str(comp_counter) + " Files")
 print("Ignored: " + str(ncomp_counter) + " URLS")
-
-#-------------------------------
-#-------------------------------
-#-------------------------------
-#-------------------------------
-#-------------------------------
-# for i in logs:
-#     URL = i.replace("\n", "")
-#     sleep(5)
-#     page = requests.get(URL)
-#     soup = BeautifulSoup(page.content, 'html.parser')
-#     os.chdir(r"C:\NBA Scraper\players")
-#     player_name = get_player_name(soup.find('h1', itemprop="name"))
-#     filename = file_name(URL, player_name)
-#     table = soup.find(class_="table_outer_container")
-#     headers = get_headers(table)
-#     player_dir = r"C:\NBA Scraper\players\\" + player_name
-#     os.chdir(player_dir)
-#     write_headers(headers, filename)
-#     if URL[-9:] == 'playoffs/':
-#         stat_table = soup.find("table", { "id" : "pgl_basic_playoffs" })
-#         data = make_table_list(stat_table)
-#         write_rows(filename, data)   
-#         print("Finished File:   " + filename)
-#     else: 
-#         stat_table = soup.find("table", { "id" : "pgl_basic" })
-#         data = make_table_list(stat_table)
-#         write_rows(filename, data)
-#         print("Finished File:   " + filename)
