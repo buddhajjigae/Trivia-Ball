@@ -17,9 +17,9 @@ add all the current NBA players data to individual Folders and.csv files based u
 ========================
 To Do:
 ========================
--Clean up the code and logic
--Finish csv_script.py
--Allow for a more dynamic approach (ex. allow users to create the necessary folders in the location of their choice)
--Incorporate the .csv data into a MySQL database
--Incorporate Django and upload the data onto an interactive personal site
--Add a virtual interactive betting system based upon the data and the next current game to be played on AWS
+1. Clean up the code and logic
+2. Finish csv_script.py
+3. Allow for a more dynamic approach (ex. allow users to create the necessary folders in the location of their choice)
+4. Incorporate the .csv data into a MySQL database
+5. Incorporate Django and upload the data onto an interactive personal site
+6. Add a virtual interactive betting system based upon the data and the next current game to be played on AWS
