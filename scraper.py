@@ -8,7 +8,6 @@ from string import ascii_lowercase
 from time import sleep
 from os import path
 
-
 #########################################################
 '''                      METHODS                      ''' 
 #########################################################
@@ -143,7 +142,6 @@ def write_urls_text(names, alphabet):
             
     print("Finished Writing To File:   Game_Logs.txt || Letter: " + alphabet)      
 
-
 #########################################################
 '''                    MAIN CODE                      ''' 
 #########################################################
@@ -196,24 +194,20 @@ else:
     logs.close()
     print("Created Game_Logs.txt")
 
-    
 '''ITERATE THROUGH SITE FOR TESTING'''
 names = get_players('https://www.basketball-reference.com/players/' + 'a')
 write_urls_text(names, 'a')
-
 
 # '''Generate Game Logs''' Uncomment to iterate through entire player database
 # for i in ascii_lowercase:
 #     names = get_players('https://www.basketball-reference.com/players/' + i)
 #     write_urls_text(names, i)
 
- 
 '''Read Game_Logs.txt and delete after reading'''
 logs = open(r'C:\NBA Scraper\Game_Logs.txt','r').read().split('\n')
 print(len(logs))
 os.remove(r'C:\NBA Scraper\Game_Logs.txt')
 print("***Game_Logs.txt DELETED***")
-
 
 '''Read Completed.txt'''
 #comp_file = open(r'C:\NBA Scraper\Completed.txt','r')
@@ -221,11 +215,9 @@ print("***Game_Logs.txt DELETED***")
 #comp_file.close()
 comp_logs = open(r'C:\NBA Scraper\Completed.txt','r').read().split('\n')
 
-
 '''Scraper Counters'''
 comp_counter = 0
 ncomp_counter = 0
-
 
 '''Player Scraper'''
 for log in logs:
@@ -256,8 +248,6 @@ for log in logs:
         write_completed(log)
     else:            
         ncomp_counter += 1
-
-
 
 '''Show Completion of Scraper'''
 print("***SCRAPER HAS FINISHED***")
