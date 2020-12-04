@@ -5,17 +5,14 @@ import pymysql
 import pandas as pd
 from os import path
 
-
 #########################################################
 '''                      METHODS                      ''' 
 #########################################################
 
 def get_player_id(file):
     counter = 0
-    
         if i == 
         
-
 def write_csv(filename, data):
     with open(filename, 'a') as csvfile:  
             writer = csv.writer(csvfile, delimiter = ',')
@@ -24,11 +21,9 @@ def write_csv(filename, data):
                 writer.writerow(data[0+i]) 
                 i += 1
 
-
 def write_completed(url):
     with open(r'C:\NBA Scraper\Fixed_Completed.txt', 'a') as txtfile:
         txtfile.write(url + "\n")
-
 
 def write_files_toFix(files):
     with open(r"C:\NBA Scraper\File_Log.txt", "a") as textfile:
@@ -48,7 +43,6 @@ if path.exists(r"C:\NBA Scraper\Fixed_Completed.txt") == False:
 else:
     print(r"C:\NBA Scraper\Fixed_Completed.txt   File Exists, Will Not Create File")
     
-    
 if path.exists(r"C:\NBA Scraper\File_Log.txt") == False:
     os.chdir(r"C:\NBA Scraper\\")
     comp_file = open('File_Log.txt','w')
@@ -56,7 +50,6 @@ if path.exists(r"C:\NBA Scraper\File_Log.txt") == False:
     print("Created File_Log.txt")
 else:
     print(r"C:\NBA Scraper\File_Log.txt   File Exists, Will Not Create File")
-
 
 '''SQL Database Connection'''
 connection = pymysql.connect(host='localhost',
@@ -102,7 +95,6 @@ with connection.cursor() as cursor:
             cursor.execute(p_key)
             print('Players table created in SQL DB')    
 
-
 #directory = r'C:\NBA Scraper\players'
 
 '''Files in directory'''
@@ -115,7 +107,6 @@ comp_files = []
 '''name_types are the 'Did Not Play, Inactive, etc.'''
 name_types_list = []
 name_types_set = []
-
 
 # '''Files that have been completed'''
 # clean_comp = []
